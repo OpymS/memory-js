@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux de Mémory - Inscription</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>ENI - MEMORY - S'inscrire</h1>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html">Accueil</a></li>
+            <li class="nav-item"><a href="inscription.html">S'inscire</a></li>
+            <li class="nav-item"><a href="connexion.html">Se connecter</a></li>
+            <li class="nav-item"><a href="profil.html">Profil</a></li>
+            <li class="nav-item"><a href="jeu.html">Jouer</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>inscrivez-vous</h2>
+        <form action="" method="post" class="contactForm">
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" class="input" placeholder="3 caractères minimum" autofocus required/>
+            <div class="message error" id="errorUsername"></div>
+
+            <label for="email">Entrez votre email</label>
+            <input type="text" id="email" name="email" class="input" placeholder="Votre email" required />
+            <div class="message error" id="errorEmail"></div>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" class="input" placeholder="Votre mot de passe" required />
+            <div class="error" id="errorPassword"></div><div class="message error" id="errorPasswordLetter"></div><div class="message error" id="errorPasswordNumber"></div><div class="message error" id="errorPasswordSpecial"></div><div class="message error" id="errorPasswordLength"></div>
+
+            <label for="confirm">Confirmez le mot de passe</label>
+            <input type="password" id="confirm" name="confirm" class="input" placeholder="Confirmez le mot de passe" required />
+            <div class="message error" id="errorConfirm"></div>
+
+            <button type="submit">Création du compte</button>
+            <button type="reset">Annuler</button>
+        </form>
+    </section>
+    <script type="module" src="js/inscription.js"></script>
+</body>
+</html>

@@ -1,3 +1,67 @@
 body{
-    background: moz-linear-gradient(pink, purple)
+    background: linear-gradient(to right,purple, violet);
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    font-size: 3em;
+    color: white;
+    font-weight: 900;
+    text-shadow: 1px 1px lightgray;
+}
+
+h2{
+    margin-top: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3vh;
+    padding: 5vh;
+    border-radius: 30px;
+    background-color: #1b1b1b;
+    border: 1px solid white;
+    color: white;
+}
+
+.nav{
+    background-color: #1b1b1b;
+    border: 1px solid white;
+}
+
+.nav a{
+    color: white;
+    font-weight: 600;
+}
+
+.nav-list{
+    display: flex;
+}
+
+.nav-item{
+    margin-right: 1vw;
+    justify-content: flex-start;
+    list-style-type: none;
+}
+
+.image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
 }
