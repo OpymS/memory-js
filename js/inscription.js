@@ -26,7 +26,7 @@ let isOkPassword = false;
 let isOkConfirm = false;
 
 $inputName.addEventListener("blur", function () {
-  if (this.value.match(nameRegex)) {
+  if (validateName(this.value)) {
     $errorName.textContent = "";
     isOkName = true;
   } else {
@@ -37,7 +37,7 @@ $inputName.addEventListener("blur", function () {
 });
 
 $inputEmail.addEventListener("blur", function () {
-  if (this.value.match(emailRegex)) {
+  if (validateEmail(this.value)) {
     $errorEmail.textContent = "";
     isOkEmail = true;
   } else {
@@ -48,7 +48,7 @@ $inputEmail.addEventListener("blur", function () {
 });
 
 $inputPassword.addEventListener("input", function () {
-  $errorPassword.textContent=
+  $errorPassword.textContent =
     "Au moins "
   $errorPasswordLetter.textContent =
     "1 lettre (majuscule ou minuscule), ";
@@ -58,7 +58,7 @@ $inputPassword.addEventListener("input", function () {
     "1 caractère spécial, ";
   $errorPasswordLength.textContent =
     "ainsi que 6 caractères minimum.";
-  if (this.value.match(passwordRegex)) {
+  if (validatePassword(this.value)) {
     $errorPassword.textContent = "Mot de passe OK";
     $errorPassword.classList.remove("error");
     $errorPassword.classList.add("success");
@@ -104,7 +104,7 @@ $inputPassword.addEventListener("input", function () {
 });
 
 $inputConfirm.addEventListener("blur", function () {
-  if (this.value==$inputPassword.value) {
+  if (this.value == $inputPassword.value) {
     $errorConfirm.textContent = "";
     isOkConfirm = true;
   } else {
@@ -116,19 +116,40 @@ $inputConfirm.addEventListener("blur", function () {
 
 $contactForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  if (isOkName && isOkEmail && isOkPassword && isOkConfirm){
-    console.log("save");
+  // Ces lignes pour gérer les éléments pré-remplis
+  isOkName = validateName($inputName.value)
+  isOkEmail = validateEmail($inputEmail.value)
+  isOkPassword = validateEmail($inputPassword.value)
+  isOkConfirm = ($inputConfirm.value == $inputPassword.value)
+  if (isOkName && isOkEmail && isOkPassword && isOkConfirm) {
     user.name = $inputName.value
     user.email = $inputEmail.value
     user.password = $inputPassword.value
-    saveUser("user",user)
+  }else{
+    alert("Erreur. Veuillez ressaisir les éléments.")
+    $contactForm.reset()
   }
 })
 
 function saveUser(key, item) {
+  console.log("save");
   const users = getUsers(key)
-  users.push(user)
-  localStorage.setItem(key, JSON.stringify(users))
+  console.log(users);
+  let unicUser = true
+  users.forEach(user => {
+    if (user.email == item.email) {
+      alert(`L'email ${user.email} est déjà utilisé. Veuillez en choisir un autre`)
+      unicUser=false
+    } else if (user.name == item.name) {
+      alert(`Le pseudo ${user.name} est déjà utilisé. Veuillez en choisir un autre`)
+      unicUser=false
+    }
+  })
+  if (unicUser) {
+    console.log("unique");
+    users.push(item)
+    localStorage.setItem(key, JSON.stringify(users))
+  };
 }
 
 function getUsers(key) {
@@ -136,3 +157,28 @@ function getUsers(key) {
 
   return users
 }
+
+function validateName(name) {
+  if (name.match(nameRegex)) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function validateEmail(email) {
+  if (email.match(emailRegex)) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function validatePassword(password) {
+  if (password.match(passwordRegex)) {
+    return true
+  } else {
+    return false
+  }
+}
+
