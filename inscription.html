@@ -19,7 +19,7 @@
     </nav>
     <section>
         <h2>Inscrivez-vous</h2>
-        <form action="" method="post" class="contactForm" id="contactForm">
+        <form action="" class="contactForm" id="contactForm" >
             <label for="username">Nom d'utilisateur</label>
             <input type="text" id="username" name="username" class="input" placeholder="3 caractères minimum" autofocus required/>
             <div class="message error" id="errorUsername"></div>
@@ -31,7 +31,10 @@
             <label for="password">Mot de passe</label>
             <input type="password" id="password" name="password" class="input" placeholder="Votre mot de passe" required />
             <p>
-                <span class="error" id="errorPassword"></span><span class="message error" id="errorPasswordLetter"></span><span class="message error" id="errorPasswordNumber"></span><span class="message error" id="errorPasswordSpecial"></span><span class="message error" id="errorPasswordLength"></span>
+                <span class="error" id="errorPassword"></span><span class="message error" id="errorPasswordLetter"></span><span class="message error" id="errorPasswordNumber"></span>
+            </p>
+            <p>
+                <span class="message error" id="errorPasswordSpecial"></span><span class="message error" id="errorPasswordLength"></span>
             </p>
 
             <label for="confirm">Confirmez le mot de passe</label>

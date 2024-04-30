@@ -1,7 +1,5 @@
 function saveUser(key, item) {
-  console.log("save");
   const users = getUsers(key)
-  console.log(users);
   let unicUser = true
   users.forEach(user => {
     if (user.email == item.email) {
@@ -11,11 +9,12 @@ function saveUser(key, item) {
       alert(`Le pseudo ${user.name} est déjà utilisé. Veuillez en choisir un autre`)
       unicUser=false
     }
+    return false
   })
   if (unicUser) {
-    console.log("unique");
     users.push(item)
     localStorage.setItem(key, JSON.stringify(users))
+    return true
   };
 }
 

@@ -117,22 +117,26 @@ $inputConfirm.addEventListener("blur", function () {
 });
 
 $contactForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+  event.preventDefault()
   // Ces lignes pour gérer les éléments pré-remplis
   isOkName = validateName($inputName.value)
   isOkEmail = validateEmail($inputEmail.value)
   isOkPassword = validatePassword($inputPassword.value)
   isOkConfirm = ($inputConfirm.value == $inputPassword.value)
-  console.log(isOkName, isOkEmail, isOkPassword, isOkConfirm);
   if (isOkName && isOkEmail && isOkPassword && isOkConfirm) {
     user.name = $inputName.value
     user.email = $inputEmail.value
     user.password = $inputPassword.value
-    saveUser("users", user)
-  }else{
+    // variable pour gérer les cas d'utilisateurs existants
+    const ok = saveUser("users", user)
+    console.log(ok);
+    if (ok) {
+      location = "connexion.html"
+    }
+  } else {
     alert("Erreur. Veuillez ressaisir les éléments.")
     $contactForm.reset()
-  }
+  } 
 })
 
 function validateName(name) {
