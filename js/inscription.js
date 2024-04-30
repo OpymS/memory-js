@@ -127,9 +127,9 @@ $contactForm.addEventListener("submit", function (event) {
     user.name = $inputName.value
     user.email = $inputEmail.value
     user.password = $inputPassword.value
+
     // variable pour gérer les cas d'utilisateurs existants
     const ok = saveUser("users", user)
-    console.log(ok);
     if (ok) {
       location = "connexion.html"
     }

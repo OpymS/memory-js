@@ -23,6 +23,7 @@ function checkUser(email, password) {
     });
     if (connected) {
         alert(`L'utilisateur ${email} est connecté.`)
+        location="profil.html"
     }else{
         alert("Erreur. Veuillez saisir les informations correctement")
     }
