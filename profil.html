@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>ENI - MEMORY - Accueil</h1>
+    <h1>ENI - MEMORY - Profil</h1>
     <nav class="nav">
         <ul class="nav-list">
             <li class="nav-item"><a href="index.html">Accueil</a></li>
@@ -18,8 +18,46 @@
         </ul>
     </nav>
     <section>
-        
+        <h2>Profil</h2>
+        <p class="center"><img src="ressources/question.svg" alt="image de profil"
+                class="profilImage"></p>
+        <p>
+            Nom d'utilisateur
+        </p>
+        <div id="username"></div>
+        <p>
+            Email
+        </p>
+        <div id="email"></div>
+
+        <form action="" class="profilForm" id="profilForm">
+            <label for="puzzle-select">Choix du Memory</label>
+            <select name="puzzle" id="puzzle-select">
+                <option value="">--Choisissez un puzzle--</option>
+                <option value="legumes">memory-legume</option>
+                <option value="alphabet-scrabble">alphabet-scrabble</option>
+                <option value="animaux">animaux</option>
+                <option value="animauxAnimes">animauxAnimes</option>
+                <option value="animauxdomestiques">animauxdomestiques</option>
+                <option value="chiens">chiens</option>
+                <option value="dinosaures">dinosaures</option>
+                <option value="dinosauresAvecNom">dinosauresAvecNom</option>
+            </select>
+            <p class="center"><img src="ressources/memory-legume/memory_detail-medium.png" alt="exemple de plateau de jeu"
+                    class="image"></p>
+            <label for="size-select">Taille du Memory</label>
+            <select name="puzzle" id="size-select">
+                <option value="12">4 x 3</option>
+                <option value="16">4 x 4</option>
+                <option value="20">5 x 4</option>
+                <option value="42">7 x 6</option>
+                <option value="48">8 x 6</option>
+                <option value="56">8 x 7</option>
+            </select>
+
+            <button type="submit">Enregistrer les modifications</button>
+        </form>
     </section>
-    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/profil.js"></script>
 </body>
 </html>

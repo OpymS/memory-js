@@ -24,4 +24,10 @@ function getUsers(key) {
   return users
 }
 
-export {saveUser, getUsers}
+function connectUser(user){
+    const presentUser=[]
+    presentUser.push(user)
+    localStorage.setItem("presentUser", JSON.stringify(presentUser))
+}
+
+export {saveUser, getUsers, connectUser}
