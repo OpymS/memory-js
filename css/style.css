@@ -1,3 +1,8 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
 body{
     background: linear-gradient(to right,purple, violet);
     display : flex;
@@ -21,6 +26,10 @@ h2{
     margin-right: auto;
 }
 
+canvas{
+    margin-top: 1vh;
+}
+
 section {
     display: flex;
     flex-direction: column;
@@ -35,6 +44,7 @@ section {
 .nav{
     background-color: #1b1b1b;
     border: 1px solid white;
+    padding: 0;
 }
 
 .nav a{
@@ -44,12 +54,19 @@ section {
 
 .nav-list{
     display: flex;
+    padding: 0;
 }
 
 .nav-item{
-    margin-right: 1vw;
+    padding: 1vw;
     justify-content: flex-start;
     list-style-type: none;
+}
+
+.selected{
+    background-color: black;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
 }
 
 .image{
