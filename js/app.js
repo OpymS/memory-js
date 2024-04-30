@@ -3,6 +3,7 @@ let nbrLines = 3;
 let flippedCards = 0;
 let firstCard, secondCard, yFirstCard, xFirstCard;
 let score = 0;
+let board;
 
 const deck = "/ressources/memory-legume";
 
@@ -15,9 +16,15 @@ const width = $canvas.width;
 const height = $canvas.height;
 const dimSquare = Math.floor(Math.min(width / nbrCols, height / nbrLines));
 
-let board = initBoard(nbrLines, nbrCols);
-board = shuffle(board, deck);
-drawBoard(board);
+document.addEventListener('keydown', (event) => {
+  if (event.code == 'Space') {
+    flippedCards = 0;
+    score = 0;
+    board = initBoard(nbrLines, nbrCols);
+    board = shuffle(board, deck);
+    drawBoard(board);
+  }
+});
 
 $canvas.addEventListener("mousedown", function (event) {
   const rect = this.getBoundingClientRect();
@@ -30,7 +37,7 @@ $canvas.addEventListener("mousedown", function (event) {
     flippedCards++;
     if (flippedCards % 2 == 0) {
       score++;
-      $score.textContent=score
+      $score.textContent = score
       secondCard = board[y][x][0];
       pair = checkPair(firstCard, secondCard);
     } else {
@@ -52,7 +59,7 @@ $canvas.addEventListener("mousedown", function (event) {
     ctx.font = "bold 72px Arial";
     ctx.fillStyle = "purple";
     setTimeout(() => {
-      ctx.fillText("Bravo !",200, 150)
+      ctx.fillText("Bravo !", 200, 150)
       ctx.fillText(`Vous avez gagné en ${score} coups`, 5, 300, 590);
     }, 500);
   }
@@ -92,6 +99,7 @@ function shuffle(board, deck) {
 }
 
 function drawBoard(board) {
+  ctx.clearRect(0, 0, width, height);
   const nbLines = board.length;
   const nbCols = board[0].length;
   for (let i = 0; i < nbLines; i++) {
