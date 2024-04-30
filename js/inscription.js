@@ -18,6 +18,8 @@ const $errorPasswordLength = document.getElementById("errorPasswordLength");
 const $inputConfirm = document.getElementById("confirm")
 const $errorConfirm = document.getElementById("errorConfirm")
 
+const user = {}
+
 let isOkName = false;
 let isOkEmail = false;
 let isOkPassword = false;
@@ -111,3 +113,26 @@ $inputConfirm.addEventListener("blur", function () {
     isOkConfirm = false;
   }
 });
+
+$contactForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (isOkName && isOkEmail && isOkPassword && isOkConfirm){
+    console.log("save");
+    user.name = $inputName.value
+    user.email = $inputEmail.value
+    user.password = $inputPassword.value
+    saveUser("user",user)
+  }
+})
+
+function saveUser(key, item) {
+  const users = getUsers(key)
+  users.push(user)
+  localStorage.setItem(key, JSON.stringify(users))
+}
+
+function getUsers(key) {
+  const users = JSON.parse(localStorage.getItem(key)) || []
+
+  return users
+}
