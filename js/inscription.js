@@ -1,3 +1,5 @@
+import { saveUser, getUsers } from "./storage.js";
+
 const nameRegex = /^([A-Za-z'-/ ]{3,})$/;
 const emailRegex = /^([a-zA-Z0-9-.]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,5})$/;
 const passwordRegex =
@@ -119,44 +121,19 @@ $contactForm.addEventListener("submit", function (event) {
   // Ces lignes pour gérer les éléments pré-remplis
   isOkName = validateName($inputName.value)
   isOkEmail = validateEmail($inputEmail.value)
-  isOkPassword = validateEmail($inputPassword.value)
+  isOkPassword = validatePassword($inputPassword.value)
   isOkConfirm = ($inputConfirm.value == $inputPassword.value)
+  console.log(isOkName, isOkEmail, isOkPassword, isOkConfirm);
   if (isOkName && isOkEmail && isOkPassword && isOkConfirm) {
     user.name = $inputName.value
     user.email = $inputEmail.value
     user.password = $inputPassword.value
+    saveUser("users", user)
   }else{
     alert("Erreur. Veuillez ressaisir les éléments.")
     $contactForm.reset()
   }
 })
-
-function saveUser(key, item) {
-  console.log("save");
-  const users = getUsers(key)
-  console.log(users);
-  let unicUser = true
-  users.forEach(user => {
-    if (user.email == item.email) {
-      alert(`L'email ${user.email} est déjà utilisé. Veuillez en choisir un autre`)
-      unicUser=false
-    } else if (user.name == item.name) {
-      alert(`Le pseudo ${user.name} est déjà utilisé. Veuillez en choisir un autre`)
-      unicUser=false
-    }
-  })
-  if (unicUser) {
-    console.log("unique");
-    users.push(item)
-    localStorage.setItem(key, JSON.stringify(users))
-  };
-}
-
-function getUsers(key) {
-  const users = JSON.parse(localStorage.getItem(key)) || []
-
-  return users
-}
 
 function validateName(name) {
   if (name.match(nameRegex)) {
