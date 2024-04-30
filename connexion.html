@@ -18,7 +18,34 @@
         </ul>
     </nav>
     <section>
+        <h2>Connectez-vous</h2>
+        <form action="" method="post" class="contactForm" id="contactForm">
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" class="input" placeholder="3 caractères minimum" autofocus
+                required />
+            <div class="message error" id="errorUsername"></div>
         
+            <label for="email">Entrez votre email</label>
+            <input type="text" id="email" name="email" class="input" placeholder="Votre email" required />
+            <div class="message error" id="errorEmail"></div>
+        
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" class="input" placeholder="Votre mot de passe" required />
+            <p>
+            <div class="error" id="errorPassword"></div>
+            <div class="message error" id="errorPasswordLetter"></div>
+            <div class="message error" id="errorPasswordNumber"></div>
+            <div class="message error" id="errorPasswordSpecial"></div>
+            <div class="message error" id="errorPasswordLength"></div>
+            </p>
+        
+            <label for="confirm">Confirmez le mot de passe</label>
+            <input type="password" id="confirm" name="confirm" class="input" placeholder="Confirmez le mot de passe" required />
+            <div class="message error" id="errorConfirm"></div>
+        
+            <button type="submit">Création du compte</button>
+            <button type="reset">Annuler</button>
+        </form>
     </section>
     <script type="module" src="js/app.js"></script>
 </body>

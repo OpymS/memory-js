@@ -17,13 +17,14 @@ h1{
     color: white;
     font-weight: 900;
     text-shadow: 1px 1px lightgray;
+    margin-top: 2vh;
+    margin-bottom: 4vh;
 }
 
 h2{
-    margin-top: 0px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+    text-align: center;
 }
 
 canvas{
@@ -31,10 +32,9 @@ canvas{
 }
 
 section {
-    display: flex;
-    flex-direction: column;
     margin-top: 3vh;
     padding: 5vh;
+    padding-top: 2vh;
     border-radius: 30px;
     background-color: #1b1b1b;
     border: 1px solid white;
@@ -70,9 +70,12 @@ section {
 }
 
 .image{
-    display: block;
-    margin-left: auto;
-    margin-right: auto
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.center{
+    text-align: center;
 }
 
 .error {
@@ -81,4 +84,8 @@ section {
 
 .success {
     color: green;
+}
+
+.score{
+    display: inline;
 }

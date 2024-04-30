@@ -16,6 +16,10 @@ const width = $canvas.width;
 const height = $canvas.height;
 const dimSquare = Math.floor(Math.min(width / nbrCols, height / nbrLines));
 
+board = initBoard(nbrLines, nbrCols);
+board = shuffle(board, deck);
+drawBoard(board);
+
 document.addEventListener('keydown', (event) => {
   if (event.code == 'Space') {
     flippedCards = 0;
@@ -23,6 +27,7 @@ document.addEventListener('keydown', (event) => {
     board = initBoard(nbrLines, nbrCols);
     board = shuffle(board, deck);
     drawBoard(board);
+    $score.textContent = score
   }
 });
 
