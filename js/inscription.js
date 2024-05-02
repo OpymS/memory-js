@@ -19,6 +19,7 @@ const $errorPasswordSpecial = document.getElementById("errorPasswordSpecial");
 const $errorPasswordLength = document.getElementById("errorPasswordLength");
 const $inputConfirm = document.getElementById("confirm")
 const $errorConfirm = document.getElementById("errorConfirm")
+const $vibrate = document.getElementById("vibrate")
 
 const user = {}
 
@@ -134,11 +135,14 @@ $contactForm.addEventListener("submit", function (event) {
     const ok = saveUser("users", user)
     if (ok) {
       location = "connexion.html"
+    } else {
+      vibrate($vibrate)
     }
   } else {
+    vibrate($vibrate)
     alert("Erreur. Veuillez ressaisir les éléments.")
     $contactForm.reset()
-  } 
+  }
 })
 
 function validateName(name) {
@@ -165,3 +169,11 @@ function validatePassword(password) {
   }
 }
 
+function vibrate(elem) {
+  elem.classList.remove("vibrate")
+  requestAnimationFrame(function (time){
+    requestAnimationFrame(function(time){
+      elem.classList.add("vibrate")
+    })
+  })
+}
