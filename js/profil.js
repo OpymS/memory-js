@@ -20,16 +20,11 @@ const $56 = document.getElementById("56")
 
 let puzzle = user.puzzle
 const lastScores = user.lastScores
-// const date1 = Date.now()
-// const date2 = Date.now()-86400
-// const date3 = Date.now()-160000
-// const lastScores = [[8, "4 x 3", "légumes", date1],[12, "4 x 4", "animaux", date2],[13, "7 x 6", "animaux", date3]]
 
 const $selection = document.getElementById(puzzle)
 
 let tbody = document.createElement("tbody")
 lastScores.forEach(score => {
-    console.log(score);
     const row = document.createElement("tr")
     for (let i = 0; i < 4; i++) {
         const cell =document.createElement("td")

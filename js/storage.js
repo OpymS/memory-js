@@ -50,5 +50,14 @@ function updateUser(user) {
   localStorage.setItem("users", JSON.stringify(users))
 }
 
-export {saveUser, getUsers, connectUser, getPresentUser, updateUser}
+function getBestScores() {
+  const scores = JSON.parse(localStorage.getItem("scores")) || []
+  return scores
+}
+
+function updateScores(scores) {
+  localStorage.setItem("scores", JSON.stringify(scores))
+}
+
+export {saveUser, getUsers, connectUser, getPresentUser, updateUser, getBestScores, updateScores}
 
