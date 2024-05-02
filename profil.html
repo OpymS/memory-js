@@ -21,38 +21,42 @@
         <h2>Profil</h2>
         <p class="center"><img src="ressources/question.svg" alt="image de profil"
                 class="profilImage"></p>
-        <p>
+        <p class="label">
             Nom d'utilisateur
         </p>
-        <div id="username"></div>
-        <p>
+        <div class="readOnly" id="username"></div>
+        <p class="label">
             Email
         </p>
-        <div id="email"></div>
+        <div class="readOnly" id="email"></div>
 
         <form action="" class="profilForm" id="profilForm">
             <label for="puzzle-select">Choix du Memory</label>
-            <select name="puzzle" id="puzzle-select">
-                <option value="memory-legume" id="memory-legume">Légumes</option>
-                <option value="alphabet-scrabble" id="alphabet-scrabble">Scrabble</option>
-                <option value="animaux" id="animaux">Animaux</option>
-                <option value="animauxAnimes" id="animauxAnimes" disabled>Animaux animés</option>
-                <option value="animauxdomestiques" id="animauxdomestiques">Animaux domestiques</option>
-                <option value="chiens" id="chiens">Chiens</option>
-                <option value="dinosaures" id="dinosaures">Dinosaures</option>
-                <option value="dinosauresAvecNom" id="dinosauresAvecNom">Dinosaures avec leur nom</option>
-            </select>
+            <p>
+                <select name="puzzle" id="puzzle-select">
+                    <option value="memory-legume" id="memory-legume">Légumes</option>
+                    <option value="alphabet-scrabble" id="alphabet-scrabble">Scrabble</option>
+                    <option value="animaux" id="animaux">Animaux</option>
+                    <option value="animauxAnimes" id="animauxAnimes" disabled>Animaux animés</option>
+                    <option value="animauxdomestiques" id="animauxdomestiques">Animaux domestiques</option>
+                    <option value="chiens" id="chiens">Chiens</option>
+                    <option value="dinosaures" id="dinosaures">Dinosaures</option>
+                    <option value="dinosauresAvecNom" id="dinosauresAvecNom">Dinosaures avec leur nom</option>
+                </select>
+            </p>
             <p class="center"><img src="ressources/memory-legume/memory_detail.png" alt="exemple de plateau de jeu"
                     class="image medium" id="puzzleImage"></p>
             <label for="size-select">Taille du Memory</label>
-            <select name="puzzle" id="size-select">
-                <option value="12" id="12">4 x 3</option>
-                <option value="16" id="16">4 x 4</option>
-                <option value="20" id="20">5 x 4</option>
-                <option value="42" id="42">7 x 6</option>
-                <option value="48" id="48">8 x 6</option>
-                <option value="56" id="56">8 x 7</option>
-            </select>
+            <p>
+                <select name="puzzle" id="size-select">
+                    <option value="12" id="12">4 x 3</option>
+                    <option value="16" id="16">4 x 4</option>
+                    <option value="20" id="20">5 x 4</option>
+                    <option value="42" id="42">7 x 6</option>
+                    <option value="48" id="48">8 x 6</option>
+                    <option value="56" id="56">8 x 7</option>
+                </select>
+            </p>
 
             <div><button type="submit">Enregistrer les modifications</button></div>
             <div class="message success" id="saved"></div>

@@ -279,7 +279,7 @@ function displayScores() {
   const bestScores = getBestScores()
   const $displayedScores = document.querySelector('tbody')
   if ($displayedScores!=null) {
-   document.querySelector('tbody').remove() 
+   $displayedScores.remove() 
   }
   let tbody = document.createElement("tbody")
   bestScores.forEach(score => {

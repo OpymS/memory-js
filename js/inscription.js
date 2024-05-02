@@ -30,22 +30,30 @@ let isOkConfirm = false;
 
 $inputName.addEventListener("blur", function () {
   if (validateName(this.value)) {
-    $errorName.textContent = "";
+    $errorName.textContent = ".";
+    $errorName.classList.remove("error")
+    $errorName.classList.add("black")
     isOkName = true;
   } else {
     $errorName.textContent =
       "Choisissez un pseudo contenant au moins 3 caractères";
+    $errorName.classList.remove("black")
+    $errorName.classList.add("error")
     isOkName = false;
   }
 });
 
 $inputEmail.addEventListener("blur", function () {
   if (validateEmail(this.value)) {
-    $errorEmail.textContent = "";
+    $errorEmail.textContent = ".";
+    $errorEmail.classList.remove("error")
+    $errorEmail.classList.add("black")
     isOkEmail = true;
   } else {
     $errorEmail.textContent =
       "Entrez un email valide";
+    $errorEmail.classList.remove("black")
+    $errorEmail.classList.add("error")
     isOkEmail = false;
   }
 });
@@ -53,12 +61,16 @@ $inputEmail.addEventListener("blur", function () {
 $inputPassword.addEventListener("input", function () {
   $errorPassword.textContent =
     "Au moins "
+  $errorPassword.classList.remove("black")
+  $errorPassword.classList.add("error")
   $errorPasswordLetter.textContent =
     "1 lettre (majuscule ou minuscule), ";
   $errorPasswordNumber.textContent =
     "1 nombre, ";
   $errorPasswordSpecial.textContent =
     "1 caractère spécial, ";
+  $errorPasswordSpecial.classList.remove("black")
+  $errorPasswordSpecial.classList.add("error")
   $errorPasswordLength.textContent =
     "ainsi que 6 caractères minimum.";
   if (validatePassword(this.value)) {
@@ -66,11 +78,15 @@ $inputPassword.addEventListener("input", function () {
     $errorPassword.classList.remove("error");
     $errorPassword.classList.add("success");
     setTimeout(() => {
-      $errorPassword.textContent = "";
+      $errorPassword.textContent = ".";
+      $errorPassword.classList.remove("success")
+      $errorPassword.classList.add("black")
     }, 3000);
     $errorPasswordLetter.textContent = "";
     $errorPasswordNumber.textContent = "";
-    $errorPasswordSpecial.textContent = "";
+    $errorPasswordSpecial.textContent = ".";
+    $errorPasswordSpecial.classList.remove("error")
+    $errorPasswordSpecial.classList.add("black")
     $errorPasswordLength.textContent = "";
     isOkPassword = true;
   } else {
@@ -108,11 +124,15 @@ $inputPassword.addEventListener("input", function () {
 
 $inputConfirm.addEventListener("blur", function () {
   if (this.value == $inputPassword.value) {
-    $errorConfirm.textContent = "";
+    $errorConfirm.textContent = ".";
+    $errorConfirm.classList.remove("error")
+    $errorConfirm.classList.add("black")
     isOkConfirm = true;
   } else {
     $errorConfirm.textContent =
       "Il y a une différence entre vos 2 mots de passe";
+    $errorConfirm.classList.remove("black")
+    $errorConfirm.classList.add("error")
     isOkConfirm = false;
   }
 });
@@ -172,9 +192,11 @@ function validatePassword(password) {
 
 function vibrate(elem) {
   elem.classList.remove("vibrate")
-  requestAnimationFrame(function (time){
-    requestAnimationFrame(function(time){
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
       elem.classList.add("vibrate")
     })
   })
 }
+
+export {vibrate}

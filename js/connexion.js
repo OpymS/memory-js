@@ -1,8 +1,10 @@
 import { getUsers, connectUser } from "./storage.js";
+// import { vibrate } from "./inscription.js"
 
 const $email = document.getElementById("email")
 const $password = document.getElementById("password")
 const $contactForm = document.getElementById("contactForm")
+const $vibrat = document.getElementById('vibrate')
 let email, password
 
 $contactForm.addEventListener("submit", function(event){
@@ -28,6 +30,16 @@ function checkUser(email, password) {
         connectUser(connectedUser)
         location="profil.html"
     }else{
+        vibrate($vibrat)
         alert("Erreur. Veuillez saisir les informations correctement")
     }
+}
+
+function vibrate(elem) {
+  elem.classList.remove("vibrate")
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      elem.classList.add("vibrate")
+    })
+  })
 }
