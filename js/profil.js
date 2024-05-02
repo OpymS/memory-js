@@ -8,7 +8,9 @@ const $profilForm = document.getElementById("profilForm")
 const $puzzleSelect = document.getElementById("puzzle-select")
 const $image = document.getElementById("puzzleImage")
 const $sizeselect = document.getElementById("size-select")
+const $saved = document.getElementById("saved")
 
+const $12 = document.getElementById("12")
 const $16 = document.getElementById("16")
 const $20 = document.getElementById("20")
 const $42 = document.getElementById("42")
@@ -27,6 +29,7 @@ $email.textContent = user.email
 
 $puzzleSelect.addEventListener("input", function () {
     $image.src = `ressources/${this.value}/memory_detail.png`
+    $12.selected = true
     adjustSizes(this.value)
 })
 
@@ -35,6 +38,10 @@ $profilForm.addEventListener("submit", function (event) {
     user.puzzle = $puzzleSelect.value
     user.size = parseInt($sizeselect.value)
     updateUser(user)
+    $saved.textContent = "Modifications enregistrées"
+    setTimeout(() => {
+        $saved.textContent=""
+    }, 3000);
 })
 
 function adjustSizes(selectedPuzzle) {

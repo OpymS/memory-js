@@ -10,28 +10,28 @@ let nbrLines = 3;
 
 switch (user.size) {
   case 12:
-      nbrCols = 4
-      nbrLines = 3
+    nbrCols = 4
+    nbrLines = 3
     break;
   case 16:
-      nbrCols = 4
-      nbrLines = 4
+    nbrCols = 4
+    nbrLines = 4
     break;
   case 20:
-      nbrCols = 5
-      nbrLines = 4
+    nbrCols = 5
+    nbrLines = 4
     break;
   case 42:
-      nbrCols = 7
-      nbrLines = 6
+    nbrCols = 7
+    nbrLines = 6
     break;
   case 48:
-      nbrCols = 8
-      nbrLines = 6
+    nbrCols = 8
+    nbrLines = 6
     break;
   case 56:
-      nbrCols = 8
-      nbrLines = 7
+    nbrCols = 8
+    nbrLines = 7
     break;
   default:
     break;
@@ -65,6 +65,7 @@ cardsBack.addEventListener("load", () => {
 document.addEventListener('keydown', (event) => {
   if (event.code == 'Space') {
     flippedCards = 0;
+    tmpFlippedCards = 0;
     score = 0;
     board = initBoard(nbrLines, nbrCols);
     board = shuffle(board, deck);
@@ -81,13 +82,15 @@ $canvas.addEventListener("mousedown", function (event) {
   if (tmpFlippedCards < 2 && board[y][x][1] == 0) {
     tmpFlippedCards++
     board[y][x][1] = 1;
-    flipCard(y, x);
-    flippedCards++;
-    if (flippedCards % 2 == 1) {
+    if (tmpFlippedCards == 1) {
+      flippedCards++;
+      flipCard(y, x);
       firstCard = board[y][x][0];
       xFirstCard = x;
       yFirstCard = y;
-    } else {
+    } else if (tmpFlippedCards == 2) {
+      flippedCards++;
+      flipCard(y, x);
       score++;
       $score.textContent = score
       secondCard = board[y][x][0];
@@ -194,7 +197,7 @@ function animateCard(y, x, endImage) {
     ctx.clearRect(x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
     ctx.fillRect((x * dimSquare + 3), y * dimSquare + 3, (dimSquare - 6), dimSquare - 6)
     ctx.drawImage(endImage, (x * dimSquare + 15), y * dimSquare + 15, (dimSquare - 30), dimSquare - 30);
-  }, (NBR_FRAMES + 1) * INTERVAL);
+  }, (NBR_FRAMES + 2) * INTERVAL);
   const interval = setInterval(() => {
     ctx.clearRect(x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
     ctx.fillStyle = "white";
