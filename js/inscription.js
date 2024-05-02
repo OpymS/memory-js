@@ -127,8 +127,8 @@ $contactForm.addEventListener("submit", function (event) {
     user.name = $inputName.value
     user.email = $inputEmail.value
     user.password = $inputPassword.value
-    user.puzzle = ""
-    user.dimensions = ""
+    user.puzzle = "memory-legume"
+    user.size = 12
 
     // variable pour gérer les cas d'utilisateurs existants
     const ok = saveUser("users", user)

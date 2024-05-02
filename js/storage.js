@@ -27,7 +27,28 @@ function getUsers(key) {
 function connectUser(user){
     const presentUser=[]
     presentUser.push(user)
-    localStorage.setItem("presentUser", JSON.stringify(presentUser))
+    sessionStorage.setItem("presentUser", JSON.stringify(presentUser))
 }
 
-export {saveUser, getUsers, connectUser}
+function getPresentUser(key) {
+  const users = JSON.parse(sessionStorage.getItem(key)) || []
+
+  return users
+}
+
+function updateUser(user) {
+  connectUser(user)
+  const users = getUsers("users")
+  for (let i = 0; i < users.length; i++) {
+    const element = users[i];
+    if (element.name == user.name) {
+      users.splice(i, 1)
+      users.push(user)
+    }
+    
+  }
+  localStorage.setItem("users", JSON.stringify(users))
+}
+
+export {saveUser, getUsers, connectUser, getPresentUser, updateUser}
+

@@ -79,6 +79,10 @@ section {
     text-align: center;
 }
 
+.medium{
+    width: 30vw;
+}
+
 .error {
     color: red;
 }

@@ -33,26 +33,25 @@
         <form action="" class="profilForm" id="profilForm">
             <label for="puzzle-select">Choix du Memory</label>
             <select name="puzzle" id="puzzle-select">
-                <option value="">--Choisissez un puzzle--</option>
-                <option value="legumes">memory-legume</option>
-                <option value="alphabet-scrabble">alphabet-scrabble</option>
-                <option value="animaux">animaux</option>
-                <option value="animauxAnimes">animauxAnimes</option>
-                <option value="animauxdomestiques">animauxdomestiques</option>
-                <option value="chiens">chiens</option>
-                <option value="dinosaures">dinosaures</option>
-                <option value="dinosauresAvecNom">dinosauresAvecNom</option>
+                <option value="memory-legume" id="memory-legume">Légumes</option>
+                <option value="alphabet-scrabble" id="alphabet-scrabble">Scrabble</option>
+                <!-- <option value="animaux" id="animaux">Animaux</option> -->
+                <!-- <option value="animauxAnimes" id="animauxAnimes">Animaux animés</option> -->
+                <option value="animauxdomestiques" id="animauxdomestiques">Animaux domestiques</option>
+                <!-- <option value="chiens" id="chiens">Chiens</option> -->
+                <option value="dinosaures" id="dinosaures">Dinosaures</option>
+                <option value="dinosauresAvecNom" id="dinosauresAvecNom">Dinosaures avec leur nom</option>
             </select>
-            <p class="center"><img src="ressources/memory-legume/memory_detail-medium.png" alt="exemple de plateau de jeu"
-                    class="image"></p>
+            <p class="center"><img src="ressources/memory-legume/memory_detail.png" alt="exemple de plateau de jeu"
+                    class="image medium" id="puzzleImage"></p>
             <label for="size-select">Taille du Memory</label>
             <select name="puzzle" id="size-select">
-                <option value="12">4 x 3</option>
-                <option value="16">4 x 4</option>
-                <option value="20">5 x 4</option>
-                <option value="42">7 x 6</option>
-                <option value="48">8 x 6</option>
-                <option value="56">8 x 7</option>
+                <option value="12" id="12">4 x 3</option>
+                <option value="16" id="16">4 x 4</option>
+                <option value="20" id="20">5 x 4</option>
+                <option value="42" id="42">7 x 6</option>
+                <option value="48" id="48">8 x 6</option>
+                <option value="56" id="56">8 x 7</option>
             </select>
 
             <button type="submit">Enregistrer les modifications</button>

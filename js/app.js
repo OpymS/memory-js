@@ -1,8 +1,42 @@
+import { getPresentUser } from "./storage.js";
+
+const user = getPresentUser("presentUser")[0] || { size: 12, puzzle: "/ressources/memory-legume" }
+
 const NBR_FRAMES = 6
 const INTERVAL = 5
 
 let nbrCols = 4;
 let nbrLines = 3;
+
+switch (user.size) {
+  case 12:
+      nbrCols = 4
+      nbrLines = 3
+    break;
+  case 16:
+      nbrCols = 4
+      nbrLines = 4
+    break;
+  case 20:
+      nbrCols = 5
+      nbrLines = 4
+    break;
+  case 42:
+      nbrCols = 7
+      nbrLines = 6
+    break;
+  case 48:
+      nbrCols = 8
+      nbrLines = 6
+    break;
+  case 56:
+      nbrCols = 8
+      nbrLines = 7
+    break;
+  default:
+    break;
+}
+
 let flippedCards = 0;
 let tmpFlippedCards = 0;
 let firstCard, secondCard, yFirstCard, xFirstCard;
@@ -11,7 +45,7 @@ let board;
 let cardsBack = new Image();
 cardsBack.src = "/ressources/question.svg";
 
-const deck = "/ressources/memory-legume";
+const deck = `/ressources/${user.puzzle}`;
 
 const $canvas = document.getElementById("myCanvas");
 const ctx = $canvas.getContext("2d");
@@ -135,7 +169,7 @@ function drawBoard(board) {
 
 function flipCard(i, j) {
   const endImage = new Image();
-  endImage.src = `${deck}/${board[i][j][0]}.svg`;
+  endImage.src = `${deck}/${board[i][j][0]}.svg`
   endImage.addEventListener("load", () => {
     animateCard(i, j, endImage)
   });
