@@ -9,6 +9,7 @@ const $puzzleSelect = document.getElementById("puzzle-select")
 const $image = document.getElementById("puzzleImage")
 const $sizeselect = document.getElementById("size-select")
 const $saved = document.getElementById("saved")
+const $table = document.getElementById("table")
 
 const $12 = document.getElementById("12")
 const $16 = document.getElementById("16")
@@ -18,7 +19,31 @@ const $48 = document.getElementById("48")
 const $56 = document.getElementById("56")
 
 let puzzle = user.puzzle
+const lastScores = user.lastScores
+// const date1 = Date.now()
+// const date2 = Date.now()-86400
+// const date3 = Date.now()-160000
+// const lastScores = [[8, "4 x 3", "légumes", date1],[12, "4 x 4", "animaux", date2],[13, "7 x 6", "animaux", date3]]
+
 const $selection = document.getElementById(puzzle)
+
+let tbody = document.createElement("tbody")
+lastScores.forEach(score => {
+    console.log(score);
+    const row = document.createElement("tr")
+    for (let i = 0; i < 4; i++) {
+        const cell =document.createElement("td")
+        if (i==3){
+            const date = new Date(score[i]);
+            cell.textContent = date.toLocaleDateString()
+        }else{
+            cell.textContent = score[i]
+        }
+        row.appendChild(cell)
+    }
+    tbody.appendChild(row)
+});
+$table.appendChild(tbody)
 
 $image.src = `ressources/${puzzle}/memory_detail.png`
 adjustSizes(puzzle)

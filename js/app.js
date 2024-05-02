@@ -1,4 +1,4 @@
-import { getPresentUser } from "./storage.js";
+import { getPresentUser, updateUser } from "./storage.js";
 
 const user = getPresentUser("presentUser")[0] || { size: 12, puzzle: "/ressources/memory-legume" }
 
@@ -116,12 +116,22 @@ $canvas.addEventListener("mousedown", function (event) {
 
   }
   if (flippedCards == nbrCols * nbrLines) {
-    ctx.font = "bold 72px Arial";
-    setTimeout(() => {
-      ctx.fillStyle = "purple";
-      ctx.fillText("Bravo !", 200, 150)
-      ctx.fillText(`Vous avez gagné en ${score} coups`, 5, 300, 590);
-    }, (NBR_FRAMES + 1) * INTERVAL + 500);
+    winner()
+    // ctx.font = "bold 72px Arial";
+    // const game = []
+    // game.push(score)
+    // game.push(`${nbrCols} x ${nbrLines}`)
+    // game.push(user.puzzle)
+    // game.push(Date.now())
+    // user.lastScores.unshift(game)
+    // if (user.lastScores.length>10) {
+    //   user.lastScores.length = 10
+    // }
+    // setTimeout(() => {
+    //   ctx.fillStyle = "purple";
+    //   ctx.fillText("Bravo !", 200, 150)
+    //   ctx.fillText(`Vous avez gagné en ${score} coups`, 5, 300, 590);
+    // }, (NBR_FRAMES + 1) * INTERVAL + 500);
   }
 
 });
@@ -166,7 +176,7 @@ function drawBoard(board) {
     for (let j = 0; j < nbCols; j++) {
       ctx.fillStyle = "white";
       ctx.fillRect(horizDecalage+j * dimSquare + 3, i * dimSquare + 3, dimSquare - 6, dimSquare - 6);
-      ctx.drawImage(cardsBack, horizDecalage+j * dimSquare + 15, i * dimSquare + 15, dimSquare - 30, dimSquare - 30);
+      ctx.drawImage(cardsBack, horizDecalage+j * dimSquare + 8, i * dimSquare + 8, dimSquare - 16, dimSquare - 16);
     }
   }
 }
@@ -197,7 +207,7 @@ function animateCard(y, x, endImage) {
   setTimeout(() => {
     ctx.clearRect(horizDecalage+x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
     ctx.fillRect(horizDecalage+x * dimSquare + 3, y * dimSquare + 3, (dimSquare - 6), dimSquare - 6)
-    ctx.drawImage(endImage, horizDecalage+x * dimSquare + 15, y * dimSquare + 15, (dimSquare - 30), dimSquare - 30);
+    ctx.drawImage(endImage, horizDecalage+x * dimSquare + 8, y * dimSquare + 8, (dimSquare - 16), dimSquare - 16);
   }, (NBR_FRAMES + 2) * INTERVAL);
   const interval = setInterval(() => {
     ctx.clearRect(horizDecalage+x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
@@ -228,5 +238,23 @@ function animateCard(y, x, endImage) {
       clearInterval(interval)
     }
   }, INTERVAL);
+}
 
+function winner() {
+  ctx.font = "bold 72px Arial";
+    const game = []
+    game.push(score)
+    game.push(`${nbrCols} x ${nbrLines}`)
+    game.push(user.puzzle)
+    game.push(Date.now())
+    user.lastScores.unshift(game)
+    if (user.lastScores.length>10) {
+      user.lastScores.length = 10
+    }
+    updateUser(user)
+    setTimeout(() => {
+      ctx.fillStyle = "purple";
+      ctx.fillText("Bravo !", 200, 150)
+      ctx.fillText(`Vous avez gagné en ${score} coups`, 5, 300, 590);
+    }, (NBR_FRAMES + 1) * INTERVAL + 500);
 }
