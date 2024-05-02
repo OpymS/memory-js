@@ -54,7 +54,7 @@ const $score = document.querySelector('.score')
 const width = $canvas.width;
 const height = $canvas.height;
 const dimSquare = Math.floor(Math.min(width / nbrCols, height / nbrLines));
-const globalHorizDecalage = (width - dimSquare*nbrCols)/2
+const horizDecalage = (width - dimSquare*nbrCols)/2
 
 board = initBoard(nbrLines, nbrCols);
 board = shuffle(board, deck);
@@ -77,7 +77,7 @@ document.addEventListener('keydown', (event) => {
 
 $canvas.addEventListener("mousedown", function (event) {
   const rect = this.getBoundingClientRect();
-  const x = Math.floor((event.clientX - rect.left-globalHorizDecalage) / dimSquare);
+  const x = Math.floor((event.clientX - rect.left-horizDecalage) / dimSquare);
   const y = Math.floor((event.clientY - rect.top) / dimSquare);
   let pair = false;
   if (tmpFlippedCards < 2 && board[y][x][1] == 0) {
@@ -165,8 +165,8 @@ function drawBoard(board) {
   for (let i = 0; i < nbLines; i++) {
     for (let j = 0; j < nbCols; j++) {
       ctx.fillStyle = "white";
-      ctx.fillRect(globalHorizDecalage+j * dimSquare + 3, i * dimSquare + 3, dimSquare - 6, dimSquare - 6);
-      ctx.drawImage(cardsBack, globalHorizDecalage+j * dimSquare + 15, i * dimSquare + 15, dimSquare - 30, dimSquare - 30);
+      ctx.fillRect(horizDecalage+j * dimSquare + 3, i * dimSquare + 3, dimSquare - 6, dimSquare - 6);
+      ctx.drawImage(cardsBack, horizDecalage+j * dimSquare + 15, i * dimSquare + 15, dimSquare - 30, dimSquare - 30);
     }
   }
 }
@@ -195,32 +195,32 @@ function checkPair(firstCard, secondCard) {
 function animateCard(y, x, endImage) {
   let i = 0
   setTimeout(() => {
-    ctx.clearRect(globalHorizDecalage+x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
-    ctx.fillRect(globalHorizDecalage+x * dimSquare + 3, y * dimSquare + 3, (dimSquare - 6), dimSquare - 6)
-    ctx.drawImage(endImage, globalHorizDecalage+x * dimSquare + 15, y * dimSquare + 15, (dimSquare - 30), dimSquare - 30);
+    ctx.clearRect(horizDecalage+x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
+    ctx.fillRect(horizDecalage+x * dimSquare + 3, y * dimSquare + 3, (dimSquare - 6), dimSquare - 6)
+    ctx.drawImage(endImage, horizDecalage+x * dimSquare + 15, y * dimSquare + 15, (dimSquare - 30), dimSquare - 30);
   }, (NBR_FRAMES + 2) * INTERVAL);
   const interval = setInterval(() => {
-    ctx.clearRect(globalHorizDecalage+x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
+    ctx.clearRect(horizDecalage+x * dimSquare - 3, y * dimSquare - 3, dimSquare + 6, dimSquare + 6);
     ctx.fillStyle = "white";
     if (i < NBR_FRAMES / 2) {
-      const horizDecalage = globalHorizDecalage+(dimSquare - 6) * (i + 1) / NBR_FRAMES
-      const vertDecalage = dimSquare / 3 * (i + 1) / NBR_FRAMES
+      const horizChange = (dimSquare - 6) * (i + 1) / NBR_FRAMES
+      const vertChange = dimSquare / 3 * (i + 1) / NBR_FRAMES
       ctx.beginPath();
-      ctx.moveTo(x * dimSquare + 3 + horizDecalage, y * dimSquare + 3 + vertDecalage);
-      ctx.lineTo((x + 1) * dimSquare - 3 - horizDecalage, y * dimSquare + 3 - vertDecalage);
-      ctx.lineTo((x + 1) * dimSquare - 3 - horizDecalage, (y + 1) * dimSquare - 3 + vertDecalage);
-      ctx.lineTo(x * dimSquare + 3 + horizDecalage, (y + 1) * dimSquare - 3 - vertDecalage);
-      ctx.lineTo(x * dimSquare + 3 + horizDecalage, y * dimSquare + 3 + vertDecalage)
+      ctx.moveTo(horizDecalage+x * dimSquare + 3 + horizChange, y * dimSquare + 3 + vertChange);
+      ctx.lineTo(horizDecalage+(x + 1) * dimSquare - 3 - horizChange, y * dimSquare + 3 - vertChange);
+      ctx.lineTo(horizDecalage+(x + 1) * dimSquare - 3 - horizChange, (y + 1) * dimSquare - 3 + vertChange);
+      ctx.lineTo(horizDecalage+x * dimSquare + 3 + horizChange, (y + 1) * dimSquare - 3 - vertChange);
+      ctx.lineTo(horizDecalage+x * dimSquare + 3 + horizChange, y * dimSquare + 3 + vertChange)
       ctx.fill();
     } else {
-      const horizDecalage = globalHorizDecalage+(dimSquare - 6) * (NBR_FRAMES - i - 1) / NBR_FRAMES
-      const vertDecalage = -(dimSquare / 3 * (NBR_FRAMES - i - 1) / NBR_FRAMES)
+      const horizChange = (dimSquare - 6) * (NBR_FRAMES - i - 1) / NBR_FRAMES
+      const vertChange = -(dimSquare / 3 * (NBR_FRAMES - i - 1) / NBR_FRAMES)
       ctx.beginPath();
-      ctx.moveTo(x * dimSquare + 3 + horizDecalage, y * dimSquare + 3 - vertDecalage);
-      ctx.lineTo((x + 1) * dimSquare - 3 - horizDecalage, y * dimSquare + 3 + vertDecalage);
-      ctx.lineTo((x + 1) * dimSquare - 3 - horizDecalage, (y + 1) * dimSquare - 3 - vertDecalage);
-      ctx.lineTo(x * dimSquare + 3 + horizDecalage, (y + 1) * dimSquare - 3 + vertDecalage);
-      ctx.lineTo(x * dimSquare + 3 + horizDecalage, y * dimSquare + 3 - vertDecalage)
+      ctx.moveTo(horizDecalage+x * dimSquare + 3 + horizChange, y * dimSquare + 3 - vertChange);
+      ctx.lineTo(horizDecalage+(x + 1) * dimSquare - 3 - horizChange, y * dimSquare + 3 + vertChange);
+      ctx.lineTo(horizDecalage+(x + 1) * dimSquare - 3 - horizChange, (y + 1) * dimSquare - 3 - vertChange);
+      ctx.lineTo(horizDecalage+x * dimSquare + 3 + horizChange, (y + 1) * dimSquare - 3 + vertChange);
+      ctx.lineTo(horizDecalage+x * dimSquare + 3 + horizChange, y * dimSquare + 3 - vertChange)
       ctx.fill();
     }
     i++
