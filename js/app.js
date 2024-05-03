@@ -1,41 +1,12 @@
 import { getPresentUser, updateUser, getBestScores, updateScores } from "./storage.js";
 
-const user = getPresentUser("presentUser")[0] || { size: 12, puzzle: "/ressources/memory-legume" }
-
 const NBR_FRAMES = 6
 const INTERVAL = 5
 
-let nbrCols = 4;
-let nbrLines = 3;
+const user = getPresentUser("presentUser")[0] || { size: 12, puzzle: "/ressources/memory-legume" }
 
-switch (user.size) {
-  case 12:
-    nbrCols = 4
-    nbrLines = 3
-    break;
-  case 16:
-    nbrCols = 4
-    nbrLines = 4
-    break;
-  case 20:
-    nbrCols = 5
-    nbrLines = 4
-    break;
-  case 42:
-    nbrCols = 7
-    nbrLines = 6
-    break;
-  case 48:
-    nbrCols = 8
-    nbrLines = 6
-    break;
-  case 56:
-    nbrCols = 8
-    nbrLines = 7
-    break;
-  default:
-    break;
-}
+let nbrCols;
+let nbrLines;
 
 let flippedCards = 0;
 let tmpFlippedCards = 0;
@@ -44,15 +15,15 @@ let score = 0;
 let board;
 let cardsBack = new Image();
 cardsBack.src = "/ressources/question.svg";
-
 const deck = `/ressources/${user.puzzle}`;
-
 const $canvas = document.getElementById("myCanvas");
 const ctx = $canvas.getContext("2d");
 
 const $score = document.querySelector('.score')
 const width = $canvas.width;
 const height = $canvas.height;
+boardSize()
+
 const dimSquare = Math.floor(Math.min(width / nbrCols, height / nbrLines));
 const horizDecalage = (width - dimSquare * nbrCols) / 2
 
@@ -70,7 +41,7 @@ document.addEventListener('keydown', (event) => {
     tmpFlippedCards = 0;
     score = 0;
     board = initBoard(nbrLines, nbrCols);
-    board = shuffle(board, deck);
+    board = shuffle(board);
     drawBoard(board);
     $score.textContent = score
   }
@@ -135,7 +106,7 @@ function initBoard(nbLines, nbCols) {
   return board;
 }
 
-function shuffle(board, deck) {
+function shuffle(board) {
   const nbLines = board.length;
   const nbCols = board[0].length;
   const nbrBox = nbLines * nbCols;
@@ -268,7 +239,6 @@ function modifyBestScores() {
         updateScores(bestScores)
         break;
       }
-
     }
   }
 
@@ -278,8 +248,8 @@ function displayScores() {
   const $table = document.getElementById('table')
   const bestScores = getBestScores()
   const $displayedScores = document.querySelector('tbody')
-  if ($displayedScores!=null) {
-   $displayedScores.remove() 
+  if ($displayedScores != null) {
+    $displayedScores.remove()
   }
   let tbody = document.createElement("tbody")
   bestScores.forEach(score => {
@@ -297,4 +267,38 @@ function displayScores() {
     tbody.appendChild(row)
   });
   $table.appendChild(tbody)
+}
+
+
+function boardSize() {
+  switch (user.size) {
+    case 12:
+      nbrCols = 4
+      nbrLines = 3
+      break;
+    case 16:
+      nbrCols = 4
+      nbrLines = 4
+      break;
+    case 20:
+      nbrCols = 5
+      nbrLines = 4
+      break;
+    case 42:
+      nbrCols = 7
+      nbrLines = 6
+      break;
+    case 48:
+      nbrCols = 8
+      nbrLines = 6
+      break;
+    case 56:
+      nbrCols = 8
+      nbrLines = 7
+      break;
+    default:
+      nbrCols = 4;
+      nbrLines = 3;
+      break;
+  }
 }

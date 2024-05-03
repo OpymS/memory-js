@@ -198,5 +198,3 @@ function vibrate(elem) {
     })
   })
 }
-
-export {vibrate}

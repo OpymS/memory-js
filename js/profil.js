@@ -1,6 +1,6 @@
 import { getPresentUser, updateUser } from "./storage.js";
 
-const user=getPresentUser("presentUser")[0]
+const user = getPresentUser("presentUser")[0]
 
 const $username = document.getElementById("username")
 const $email = document.getElementById("email")
@@ -17,33 +17,16 @@ const $20 = document.getElementById("20")
 const $42 = document.getElementById("42")
 const $48 = document.getElementById("48")
 const $56 = document.getElementById("56")
-
 let puzzle = user.puzzle
 const lastScores = user.lastScores
-
 const $selection = document.getElementById(puzzle)
-
-let tbody = document.createElement("tbody")
-lastScores.forEach(score => {
-    const row = document.createElement("tr")
-    for (let i = 0; i < 4; i++) {
-        const cell =document.createElement("td")
-        if (i==3){
-            const date = new Date(score[i]);
-            cell.textContent = date.toLocaleDateString()
-        }else{
-            cell.textContent = score[i]
-        }
-        row.appendChild(cell)
-    }
-    tbody.appendChild(row)
-});
-$table.appendChild(tbody)
+$selection.selected = true
 
 $image.src = `ressources/${puzzle}/memory_detail.png`
 adjustSizes(puzzle)
 
-$selection.selected = true
+displayLastScores()
+
 $username.textContent = user.name
 $email.textContent = user.email
 
@@ -60,12 +43,12 @@ $profilForm.addEventListener("submit", function (event) {
     updateUser(user)
     $saved.textContent = "Modifications enregistrées"
     setTimeout(() => {
-        $saved.textContent=""
+        $saved.textContent = ""
     }, 3000);
 })
 
 function adjustSizes(selectedPuzzle) {
-        switch (selectedPuzzle) {
+    switch (selectedPuzzle) {
         case "memory\-legume":
             $16.disabled = true
             $20.disabled = true
@@ -121,8 +104,27 @@ function adjustSizes(selectedPuzzle) {
             $42.disabled = true
             $48.disabled = true
             $56.disabled = true
-            break;   
+            break;
         default:
             break;
     }
+}
+
+function displayLastScores() {
+    let tbody = document.createElement("tbody")
+    lastScores.forEach(score => {
+        const row = document.createElement("tr")
+        for (let i = 0; i < 4; i++) {
+            const cell = document.createElement("td")
+            if (i == 3) {
+                const date = new Date(score[i]);
+                cell.textContent = date.toLocaleDateString()
+            } else {
+                cell.textContent = score[i]
+            }
+            row.appendChild(cell)
+        }
+        tbody.appendChild(row)
+    });
+    $table.appendChild(tbody)
 }

@@ -27,10 +27,6 @@ h2 {
     text-align: center;
 }
 
-canvas {
-    margin-top: 1vh;
-}
-
 section {
     margin-top: 3vh;
     padding: 5vh;
@@ -42,6 +38,10 @@ section {
     line-height: 200%;
 }
 
+canvas {
+    margin-top: 1vh;
+}
+
 table {
     table-layout: fixed;
     margin-left: auto;
@@ -50,13 +50,10 @@ table {
     border-collapse: collapse;
 }
 
-table, td, th {
+td, th {
     border-width: 1px;
     border-style: solid;
     border-color: white;
-}
-
-th, td {
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -71,9 +68,7 @@ input {
 }
 
 input:focus {
-    background-color: #1b1b1b;
-    color: white;
-    border: 0px;
+    border: none;
     border-bottom: 1px solid white;
     font-size: medium;
     width: 20vw;
@@ -142,9 +137,6 @@ select{
 .black{
     color: #1b1b1b;
 }
-.score {
-    display: inline;
-}
 
 .profilImage {
     margin-top: -2vh;
@@ -173,50 +165,16 @@ select{
 }
 
 @keyframes vibrate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    5% {
-        transform: rotate(2deg);
-    }
-
-    15% {
-        transform: rotate(-2deg);
-    }
-
-    25% {
-        transform: rotate(2deg);
-    }
-
-    35% {
-        transform: rotate(-2deg);
-    }
-
-    45% {
-        transform: rotate(2deg);
-    }
-
-    55% {
-        transform: rotate(-2deg);
-    }
-
-    65% {
-        transform: rotate(2deg);
-    }
-
-    75% {
-        transform: rotate(-2deg);
-    }
-
-    85% {
-        transform: rotate(2deg);
-    }
-
-    95% {
-        transform: rotate(-2deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
+    0% { transform: rotate(0deg);}
+    5% {transform: rotate(2deg);}
+    15% {transform: rotate(-2deg);}
+    25% {transform: rotate(2deg);}
+    35% {transform: rotate(-2deg);}
+    45% {transform: rotate(2deg);}
+    55% {transform: rotate(-2deg);}
+    65% {transform: rotate(2deg);}
+    75% {transform: rotate(-2deg);}
+    85% {transform: rotate(2deg);}
+    95% {transform: rotate(-2deg);}
+    100% {transform: rotate(0deg);}
 }

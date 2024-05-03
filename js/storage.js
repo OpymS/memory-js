@@ -4,10 +4,10 @@ function saveUser(key, item) {
   users.forEach(user => {
     if (user.email == item.email) {
       alert(`L'email ${user.email} est déjà utilisé. Veuillez en choisir un autre`)
-      unicUser=false
+      unicUser = false
     } else if (user.name == item.name) {
       alert(`Le pseudo ${user.name} est déjà utilisé. Veuillez en choisir un autre`)
-      unicUser=false
+      unicUser = false
     }
     return false
   })
@@ -24,10 +24,10 @@ function getUsers(key) {
   return users
 }
 
-function connectUser(user){
-    const presentUser=[]
-    presentUser.push(user)
-    sessionStorage.setItem("presentUser", JSON.stringify(presentUser))
+function connectUser(user) {
+  const presentUser = []
+  presentUser.push(user)
+  sessionStorage.setItem("presentUser", JSON.stringify(presentUser))
 }
 
 function getPresentUser(key) {
@@ -45,7 +45,7 @@ function updateUser(user) {
       users.splice(i, 1)
       users.push(user)
     }
-    
+
   }
   localStorage.setItem("users", JSON.stringify(users))
 }
@@ -59,5 +59,4 @@ function updateScores(scores) {
   localStorage.setItem("scores", JSON.stringify(scores))
 }
 
-export {saveUser, getUsers, connectUser, getPresentUser, updateUser, getBestScores, updateScores}
-
+export { saveUser, getUsers, connectUser, getPresentUser, updateUser, getBestScores, updateScores }

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeux de Mémory - Inscription</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <h1>ENI - MEMORY - S'inscrire</h1>
     <nav class="nav">
@@ -17,28 +19,32 @@
             <li class="nav-item"><a href="jeu.html">Jouer</a></li>
         </ul>
     </nav>
-    <section class="vibrate" id="vibrate">
+    <section id="vibrate">
         <h2>Inscrivez-vous</h2>
-        <form action="" class="contactForm" id="contactForm" >
+        <form class="contactForm" id="contactForm">
             <label for="username">Nom d'utilisateur</label>
-            <p><input type="text" id="username" name="username" class="input" placeholder="3 caractères minimum"/></p>
+            <p><input type="text" id="username" name="username" class="input" placeholder="3 caractères minimum" /></p>
             <div class="message black" id="errorUsername">.</div>
 
             <label for="email">Entrez votre email</label>
-            <p><input type="text" id="email" name="email" class="input" placeholder="Votre email"/></p>
+            <p><input type="text" id="email" name="email" class="input" placeholder="Votre email" /></p>
             <div class="message black" id="errorEmail">.</div>
 
             <label for="password">Mot de passe</label>
-            <p><input type="password" id="password" name="password" class="input" placeholder="Votre mot de passe"/></p>
-            <p>
-                <span class="black" id="errorPassword">.</span><span class="message error" id="errorPasswordLetter"></span><span class="message error" id="errorPasswordNumber"></span>
+            <p><input type="password" id="password" name="password" class="input" placeholder="Votre mot de passe" />
             </p>
             <p>
-                <span class="message black" id="errorPasswordSpecial">.</span><span class="message error" id="errorPasswordLength"></span>
+                <span class="black" id="errorPassword">.</span><span class="message error"
+                    id="errorPasswordLetter"></span><span class="message error" id="errorPasswordNumber"></span>
+            </p>
+            <p>
+                <span class="message black" id="errorPasswordSpecial">.</span><span class="message error"
+                    id="errorPasswordLength"></span>
             </p>
 
             <label for="confirm">Confirmez le mot de passe</label>
-            <p><input type="password" id="confirm" name="confirm" class="input" placeholder="Confirmez le mot de passe"/></p>
+            <p><input type="password" id="confirm" name="confirm" class="input"
+                    placeholder="Confirmez le mot de passe" /></p>
             <div class="message black" id="errorConfirm">.</div>
 
             <button type="submit">Création du compte</button>
@@ -47,4 +53,5 @@
     </section>
     <script type="module" src="js/inscription.js"></script>
 </body>
+
 </html>
