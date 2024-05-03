@@ -3,7 +3,7 @@ import { getPresentUser, updateUser, getBestScores, updateScores } from "./stora
 const NBR_FRAMES = 6
 const INTERVAL = 5
 
-const user = getPresentUser("presentUser")[0] || { size: 12, puzzle: "/ressources/memory-legume" }
+const user = getPresentUser("presentUser")[0] || { size: 12, puzzle: "memory-legume" }
 
 let nbrCols;
 let nbrLines;
